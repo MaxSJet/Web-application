@@ -1,0 +1,20 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Sperma Gleba",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbtkUcMt7LiTQ4CLqBEoBxYPIA0K_F0e_wNg&usqp=CAU",
+      "weight": 1000,
+      "sostav": "100% белок",
+      "price": 100
+    },
+    {
+      "id": 2,
+      "name": "Anal Gleba",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbtkUcMt7LiTQ4CLqBEoBxYPIA0K_F0e_wNg&usqp=CAU",
+      "weight": 500,
+      "sostav": "100% белок и кровь",
+      "price": 250
+    }
+  ]
+}

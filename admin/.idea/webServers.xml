@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="f7373b6f-18f4-4ea6-b94c-bf47b539dcbf" name="ssd">
+        <fileTransfer accessType="SFTP" host="80.87.192.171" port="22" sshConfigId="532d0068-a091-4ac1-aaab-ad3559c8c06c" sshConfig="root@80.87.192.171:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="fead5ab8-a749-4853-8f5e-fa383c3757e3" name="fg" url="http://logunivers.beget.tech">
+        <fileTransfer host="logunivers.beget.tech" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

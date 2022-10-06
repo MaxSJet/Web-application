@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "date": "2022-09-30 12:00",
+      "bill": [
+        {
+          "name": "Sperma Gleba",
+          "count": 2
+        },
+        {
+          "name": "Anal Gleba",
+          "count": 3
+        }
+      ],
+      "status": "ordered",
+      "price": 15000
+    },
+    {
+      "id": 2,
+      "date": "2022-09-30 12:00",
+      "bill": [
+        {
+          "name": "Sperma Gleba",
+          "count": 1
+        }
+      ],
+      "status": "in_progress",
+      "price": 2500
+    }
+  ]
+}

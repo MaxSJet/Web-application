@@ -9,7 +9,7 @@
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                   <span class="clear">
                     <span class="block m-t-xs">
-                      <strong class="font-bold">Администратор</strong>
+                      <strong class="font-bold">{{role}}</strong>
                    </span>
                   </span>
                 </a>
@@ -55,7 +55,7 @@
             <ul class="nav navbar-top-links navbar-right">
               <li>
                 <a href="login.html">
-                  <i class="fa fa-sign-out"></i> Log out
+                  <i class="fa fa-sign-out"></i> {{name}}
                 </a>
               </li>
             </ul>
@@ -75,24 +75,32 @@
 </template>
 
 <script>
-
+import axios from 'axios'
 export default {
   name: 'App',
   data() {
     return {
       auth:false,
+      role: 0,
+      name: ''
     }
   },
   mounted() {
-    let a = localStorage.getItem('auth')
-    if(a !== 'true') {
-      this.auth = false
-      if(window.location.pathname !== '/auth') {
-        window.location.href="/auth"
-      }
-    } else {
+    //   this.auth = false
+    axios.get('http://127.0.0.1:5000/times/current_user')
+    .then(({data}) => {
+      console.log(data)
       this.auth = true
-    }
+      this.role = data.role>1?'Админ':''
+      this.name = data.full_name
+      // let a = localStorage.getItem('auth')
+    })
+    // if(a !== 'true') {
+    //   if(window.location.pathname !== '/auth') {
+    //     window.location.href="/auth"
+    //   }
+    // } else {
+    // }
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="auth === true">
+  <div v-if="(auth === true)">
     <div id="wrapper">
       <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
@@ -9,7 +9,7 @@
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                   <span class="clear">
                     <span class="block m-t-xs">
-                      <strong class="font-bold">{{role}}</strong>
+                      <strong class="font-bold">{{login}}</strong>
                    </span>
                   </span>
                 </a>
@@ -25,6 +25,12 @@
               </router-link>
             </li>
             <li>
+              <router-link :to="{name:'UserMenu'}">
+                <i class="fa fa-flask"></i>
+                <span class="nav-label">Меню</span>
+              </router-link>
+            </li>
+            <li v-if="role === 1">
               <router-link :to="{name:'Dishes'}">
                 <i class="fa fa-flask"></i>
                 <span class="nav-label">Блюда</span>
@@ -36,7 +42,7 @@
                 <span class="nav-label">Заказы</span>
               </router-link>
             </li>
-            <li>
+            <li v-if="role === 1">
               <router-link :to="{name:'Menu'}">
                 <i class="fa fa-book"></i>
                 <span class="nav-label">Меню на неделю</span>
@@ -54,8 +60,8 @@
             </div>
             <ul class="nav navbar-top-links navbar-right">
               <li>
-                <a href="login.html">
-                  <i class="fa fa-sign-out"></i> {{name}}
+                <a href="auth" @click="refresh()" >
+                  <i class="fa fa-sign-out"></i> {{name}} 
                 </a>
               </li>
             </ul>
@@ -76,33 +82,37 @@
 
 <script>
 import axios from 'axios'
+import {useRoute} from "vue-router";
 export default {
   name: 'App',
   data() {
     return {
       auth:false,
       role: 0,
-      name: ''
+      name: '',
+      login: '',
+      router: useRoute()
     }
   },
   mounted() {
-    //   this.auth = false
+    this.userId = localStorage.getItem('userId')
     axios.get('http://127.0.0.1:5000/times/current_user')
     .then(({data}) => {
-      console.log(data)
-      this.auth = true
-      this.role = data.role>1?'Админ':''
-      this.name = data.full_name
-      // let a = localStorage.getItem('auth')
-    })
-    // if(a !== 'true') {
-    //   if(window.location.pathname !== '/auth') {
-    //     window.location.href="/auth"
-    //   }
-    // } else {
-    // }
+      data.forEach(user => {
+          if (user.id == this.userId) {
+            this.auth = true
+            this.role = user.role
+            this.name = user.firstname + ' ' + user.middlename + ' ' + user.lastname
+            this.login = user.login
+            localStorage.setItem('roling', this.role)
+          }})
+        })
+      },
+
+  refresh(){
+    window.location.reload()
+  }    
   }
-}
 </script>
 
 <style>

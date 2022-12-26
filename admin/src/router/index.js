@@ -5,7 +5,6 @@ import CreateDish from "@/views/CreateDish";
 import Orders from "@/views/Orders";
 import Menu from "@/views/Menu";
 import UserMenu from "@/views/UserMenu";
-import AuthPage from "@/views/AuthPage";
 import EditDay from "@/views/EditDay";
 
 
@@ -14,11 +13,6 @@ const routes = [
         path: "/",
         name: "Home",
         component: Home,
-    },
-    {
-        path: "/auth",
-        name: "Auth",
-        component: AuthPage,
     },
     {
         path: "/dishes",

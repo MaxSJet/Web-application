@@ -75,13 +75,13 @@ export default {
     },
     deleteDish(id) {
       let self = this
-      axios.delete('http://127.0.0.1:5000/dishes/'+id).then(({data}) => {
+      axios.delete('http://178.21.8.23:5000/dishes/'+id).then(({data}) => {
         console.log(data)
         self.getData()
       })
     },
     async getData() {
-      await axios.get('http://127.0.0.1:5000/dishes').then(({data}) => {
+      await axios.get('http://178.21.8.23:5000/dishes').then(({data}) => {
         this.dishes = data
         this.dishesAll = data
       })

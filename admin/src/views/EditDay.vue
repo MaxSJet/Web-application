@@ -62,14 +62,14 @@ export default {
       let data = {
         dishes: this.selectedDishes
       }
-      axios.patch('http://127.0.0.1:5000/menus/'+this.router.params.id, data).then(({data}) => {
+      axios.patch('http://178.21.8.23:5000/menus/'+this.router.params.id, data).then(({data}) => {
         console.log(data)
         self.$router.push('/menu')
       })
     },
     getData() {
       let self = this
-      axios.get('http://127.0.0.1:5000/dishes').then(({data}) => {
+      axios.get('http://178.21.8.23:5000/dishes').then(({data}) => {
         this.dishes = data
       })
       axios.get('http://127.0.0.1:5000/menus/'+this.router.params.id).then(({data}) => {

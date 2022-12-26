@@ -100,17 +100,17 @@
           dishes: this.orderdishes,
           userId: self.userId
         }
-        axios.post('http://127.0.0.1:5000/orders/', data).then(({data}) => {
+        axios.post('http://178.21.8.23:5000/orders/', data).then(({data}) => {
           console.log(data)
           self.$router.push('/orders')
         })
       },
       getData() {
         let self = this
-        axios.get('http://127.0.0.1:5000/dishes').then(({data}) => {
+        axios.get('http://178.21.8.23:5000/dishes').then(({data}) => {
           this.dishes = data
         })
-        axios.get('http://127.0.0.1:5000/menus/'+this.router.params.id).then(({data}) => {
+        axios.get('http://178.21.8.23:5000/menus/'+this.router.params.id).then(({data}) => {
           data.dishes.forEach(function(item) {
             self.selectedDishes.push(item.id)
           })

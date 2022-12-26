@@ -9,7 +9,7 @@
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                   <span class="clear">
                     <span class="block m-t-xs">
-                      <strong class="font-bold">{{login}}</strong>
+                      <strong class="font-bold">{{name}}</strong>
                    </span>
                   </span>
                 </a>
@@ -90,22 +90,18 @@ export default {
       auth:false,
       role: 0,
       name: '',
-      login: '',
       router: useRoute()
     }
   },
   mounted() {
-    this.userId = localStorage.getItem('userId')
     axios.get('http://127.0.0.1:5000/times/current_user')
     .then(({data}) => {
-      data.forEach(user => {
-          if (user.id == this.userId) {
             this.auth = true
-            this.role = user.role
-            this.name = user.firstname + ' ' + user.middlename + ' ' + user.lastname
-            this.login = user.login
+            this.role = data.role
+            this.name = data.full_name
+            this.id = data.id
             localStorage.setItem('roling', this.role)
-          }})
+            localStorage.setItem('userId', this.id)
         })
       },
 

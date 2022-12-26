@@ -31,7 +31,7 @@ export default {
     getData() {
       this.userId = localStorage.getItem('userId')
       this.role = localStorage.getItem('roling')
-      axios.get('http://127.0.0.1:5000/orders').then(({data}) => {
+      axios.get('http://178.21.8.23:5000/orders').then(({data}) => {
         if (this.role == 1 || this.role == 2) {
           this.dishes = data
           this.all = data

@@ -4,19 +4,15 @@ import Dishes from "@/views/Dishes.vue";
 import CreateDish from "@/views/CreateDish";
 import Orders from "@/views/Orders";
 import Menu from "@/views/Menu";
+import UserMenu from "@/views/UserMenu";
 import EditDay from "@/views/EditDay";
-import AuthPage from "@/views/AuthPage";
+
 
 const routes = [
     {
         path: "/",
         name: "Home",
         component: Home,
-    },
-    {
-        path: "/auth",
-        name: "Auth",
-        component: AuthPage,
     },
     {
         path: "/dishes",
@@ -43,6 +39,11 @@ const routes = [
         path: "/dishes/create",
         name: "CreateDish",
         component: CreateDish,
+    },
+    {
+        path: "/usermenu",
+        name: "UserMenu",
+        component: UserMenu,
     },
 ];
 

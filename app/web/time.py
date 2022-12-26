@@ -1,8 +1,10 @@
-from flask import Blueprint, current_app
+from flask import Blueprint, current_app, jsonify, request
 from app import db
 import datetime
 from flask_cors import CORS, cross_origin
 from ..models.common import CurrentUser
+from ..models.base import Users
+import os
 
 mod = Blueprint('time', __name__, url_prefix='/times')
 CORS(mod)
@@ -19,9 +21,14 @@ def get_week():
 @mod.route('/current_user', methods=['GET'])
 @cross_origin()
 def current_user():
-    #TODO: заглушка до публикации
     login = current_app.config.get('CURRENT_USER')
-    # login = request.environ['REMOTE_USER'].split('@')[0]
-    
+    #login = request.environ['REMOTE_USER'].split('@')[0]
     cur_user = CurrentUser(login)
-    return cur_user.json()
+    return cur_user.json()  
+
+    ##TODO: заглушка до публикации
+    #login = current_app.config.get('CURRENT_USER')
+    ## login = request.environ['REMOTE_USER'].split('@')[0]
+    #
+    #cur_user = CurrentUser(login)
+    #return cur_user.json()

@@ -29,12 +29,19 @@ export default {
   },
   methods: {
     getData() {
+      this.userId = localStorage.getItem('userId')
+      this.role = localStorage.getItem('roling')
       axios.get('http://178.21.8.23:5000/orders').then(({data}) => {
-        this.orders = data
-        console.log(data)
-        console.log(Object.keys(data).length)
+        if (this.role == 1 || this.role == 2) {
+          this.dishes = data
+          this.all = data
+        }
+        else {
+          this.dishes = data.filter((obj) => obj.userId == this.userId)
+          this.all = data.filter((obj) => obj.userId == this.userId)
+        }
       })
-    },
+    }
   }
 }
 </script>

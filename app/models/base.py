@@ -5,6 +5,14 @@ from .constants import statuses
 
 @dataclass
 class Users(db.Model):
+    id: int
+    login: str
+    role: int
+    lastname: str
+    firstname: str
+    middlename: str
+    password: str
+
     """Пользователи."""
     
     __tablename__ = "users"
@@ -14,13 +22,22 @@ class Users(db.Model):
     lastname = db.Column(db.String, nullable=True)
     firstname = db.Column(db.String, nullable=True)
     middlename = db.Column(db.String, nullable=True)
+    password = db.Column(db.String, nullable=True)
 
-    # def __init__(self, login:str=None , role:int=0, lastname:str=None, firstname:str=None, middlename:str=None):
-    #     self.login = login
-    #     self.role = role
-    #     self.lastname = lastname
-    #     self.middlename = middlename
-    #     self.firstname = firstname
+    def __init__(self, login:str=None , role:int=0, lastname:str=None, firstname:str=None, middlename:str=None, password:str=None):
+        self.login = login
+        self.role = role
+        self.lastname = lastname
+        self.middlename = middlename
+        self.firstname = firstname
+        self.password = password
+    def __repr__(self):
+        return '<Users %r>' % self.login
+
+#users = db.Table('orders_users',
+#                db.Column('order_id', db.Integer, db.ForeignKey('orders.id'), primary_key=True),
+#                db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True)
+#                )    
 
 @dataclass
 class Dish(db.Model):
@@ -55,13 +72,18 @@ dishes = db.Table('tags',
                   db.Column('order_id', db.Integer, db.ForeignKey('orders.id'), primary_key=True)
                   )
 
-
+users = db.Table('orders_users',
+                db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True)
+                )  
 @dataclass
 class Order(db.Model):
     id: int
-    dishes: type([])
+    dishes: list
     total: int
     status: int
+    userId: str
+    dishCount: str
+    date: str
 
     __tablename__ = 'orders'
 
@@ -70,11 +92,17 @@ class Order(db.Model):
         backref=db.backref('orders', lazy=True))
     status = db.Column(db.Integer, default=statuses["NEW"])
     total = db.Column(db.Float)
-
-    def __init__(self, dishes=None, status=None, total=None):
+    userId = db.Column(db.String, nullable=True)
+    dishCount = db.Column(db.String, nullable=True)
+    date = db.Column(db.String, nullable=True)
+    
+    def __init__(self, dishes=None, status=None, total=None, userId=None,dishCount=None, date=None):
         self.dishes = dishes
         self.status = status
         self.total = total
+        self.userId = userId
+        self.dishCount = dishCount
+        self.date = date 
 
     def __repr__(self):
         return '<Order %r>' % self.name
@@ -84,11 +112,12 @@ dishes = db.Table('menu_dishes',
                   db.Column('menu_id', db.Integer, db.ForeignKey('menus.id'), primary_key=True)
                   )
 
+        
 
 @dataclass
 class Menu(db.Model):
     id: int
-    dishes: [Dish]
+    dishes: list
     date: db.Date
 
     __tablename__ = 'menus'

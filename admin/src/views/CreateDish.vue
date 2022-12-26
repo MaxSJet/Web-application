@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="role == 1">
     <div class="row">
       <div class="col-lg-12">
         <div class="ibox float-e-margins">
@@ -99,10 +99,16 @@ export default {
       compound: null,
       image_url: null,
       photo: null,
-      errors: []
+      errors: [],
+      role: 0
+      
     }
   },
+  mounted() {
+    this.role = localStorage.getItem('roling')
+  },
   methods: {
+    
     create() {
       let self = this
       this.errors = []
@@ -116,7 +122,7 @@ export default {
         data.append('compound', this.compound)
         data.append('image_url', this.photo)
 
-        axios.post('http://178.21.8.23:5000/dishes/', data, {
+        axios.post('http://127.0.0.1:5000/dishes/', data, {
           headers: {
             "Content-Type": 'multipart/form-data',
           },

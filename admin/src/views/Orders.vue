@@ -101,7 +101,7 @@ export default {
     getData() {
       this.userId = localStorage.getItem('userId')
       this.role = localStorage.getItem('roling')
-      axios.get('http://127.0.0.1:5000/orders').then(({data}) => {
+      axios.get('http://178.21.8.23:5000/orders').then(({data}) => {
         if (this.role == 1 || this.role == 2) {
           this.dishes = data
           this.all = data
@@ -113,7 +113,7 @@ export default {
       })
     },
     setStatus(id, status) {
-      axios.patch('http://127.0.0.1:5000/orders/status/'+id, {
+      axios.patch('http://178.21.8.23:5000/orders/status/'+id, {
         "status": status
       }).then(({data}) => {
         console.log(data)
@@ -122,7 +122,7 @@ export default {
     },
     delorder(id) {
       let self = this
-      axios.delete('http://127.0.0.1:5000/orders/'+id).then(({data}) => {
+      axios.delete('http://178.21.8.23:5000/orders/'+id).then(({data}) => {
         console.log(data)
         self.getData()
       })
